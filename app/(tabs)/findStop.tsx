@@ -1,6 +1,5 @@
 import Search from "@/components/common/Search";
 import { getStops } from "@/lib/api";
-import { Stop } from "@/lib/models";
 import globalStyles from "@/styles/globalStyles";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "expo-router";

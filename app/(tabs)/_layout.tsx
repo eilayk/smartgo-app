@@ -31,6 +31,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="stopTimes"
         options={{
+          headerShown: false,
           href: null,
         }}
       />
