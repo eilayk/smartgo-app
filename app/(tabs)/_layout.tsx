@@ -13,7 +13,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          headerShown: false,
+          title: "Favourites",
           tabBarIcon: ({ color }) => (
             <FontAwesome size={28} name="star" color={color} />
           ),

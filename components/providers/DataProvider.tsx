@@ -1,6 +1,6 @@
 import { FavoriteStopsContext } from "@/lib/contexts";
 import { FavoriteStop } from "@/lib/models";
-import { savedStopsService } from "@/lib/service/savedStopsService";
+import { favoriteStopsService } from "@/lib/service/favoriteStopsService";
 import { ReactNode, useCallback, useEffect, useState } from "react";
 
 type DataProviderProps = {
@@ -14,17 +14,17 @@ export const DataProvider = (props: DataProviderProps) => {
   const localStorageSetFavoriteStops = useCallback(
     (newFavoriteStops: FavoriteStop[]) => {
       setFavoriteStops(newFavoriteStops);
-      savedStopsService.save(favoriteStops);
+      favoriteStopsService.save(favoriteStops);
     },
     []
   );
 
   useEffect(() => {
-    const loadSavedStops = async () => {
-      setFavoriteStops(await savedStopsService.get());
+    const loadFavoriteStops = async () => {
+      setFavoriteStops(await favoriteStopsService.get());
     };
 
-    loadSavedStops();
+    loadFavoriteStops();
   }, []);
 
   return (

@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo } from "react";
 import { Stack, useLocalSearchParams } from "expo-router";
 import { useQuery } from "@tanstack/react-query";
 import { getStopTimes } from "@/lib/api";
@@ -13,6 +13,7 @@ import {
 import globalStyles from "@/styles/globalStyles";
 import { apiTimeToLocalTime, getDateTime } from "@/lib/utils.ts";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
+import { useFavoriteStops } from "@/hooks/useFavoriteStops";
 
 const StopTimesPage = () => {
   const { stopId, routeId } = useLocalSearchParams<{
@@ -20,13 +21,37 @@ const StopTimesPage = () => {
     routeId: string;
   }>();
 
+  const { favoriteStops, addFavorite, removeFavorite } = useFavoriteStops();
+  const isFavorite = useMemo(
+    () =>
+      favoriteStops.some(
+        (faveStop) => faveStop.routeId === routeId && faveStop.stopId === stopId
+      ),
+    [favoriteStops, routeId, stopId]
+  );
+
   const { date, time } = useMemo(() => getDateTime(), []);
   const { isPending, error, data } = useQuery({
     queryKey: [`${routeId}-${stopId}`],
     queryFn: () => getStopTimes(stopId, routeId, date, time),
   });
 
-  const [favourite, setFavourite] = useState(false);
+  const handleStarClick = () => {
+    if (!data) {
+      return;
+    }
+
+    if (isFavorite) {
+      removeFavorite(routeId, stopId);
+    } else {
+      addFavorite({
+        stopId,
+        stopName: data.stopName,
+        routeId,
+        routeName: data.routeName,
+      });
+    }
+  };
 
   if (isPending) {
     return <ActivityIndicator />;
@@ -42,8 +67,8 @@ const StopTimesPage = () => {
         options={{
           title: "Departure Times",
           headerRight: () => (
-            <Pressable onPress={() => setFavourite(!favourite)}>
-              <FontAwesome name={favourite ? "star" : "star-o"} size={16} />
+            <Pressable onPress={handleStarClick}>
+              <FontAwesome name={isFavorite ? "star" : "star-o"} size={16} />
             </Pressable>
           ),
         }}

@@ -1,12 +1,12 @@
 import { createContext } from "react";
 import { FavoriteStop } from "./models";
 
-type FavoriteStopsContext = {
+type FavoriteStopsContextType = {
     favoriteStops: FavoriteStop[],
     setFavoriteStops: (favoriteStops: FavoriteStop[]) => void,
 }
 
-export const FavoriteStopsContext = createContext<FavoriteStopsContext>({
+export const FavoriteStopsContext = createContext<FavoriteStopsContextType>({
     favoriteStops: [],
     setFavoriteStops: (savedStops: FavoriteStop[]) => { }
 });
