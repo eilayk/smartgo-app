@@ -5,6 +5,7 @@ const FAVORITE_STOPS_KEY = 'favorite-stops';
 
 const save = async (newFavoriteStops: FavoriteStop[]) => {
   try {
+    console.log('saving', newFavoriteStops);
     await AsyncStorage.setItem(
       FAVORITE_STOPS_KEY,
       JSON.stringify(newFavoriteStops),

@@ -14,9 +14,9 @@ export const DataProvider = (props: DataProviderProps) => {
   const localStorageSetFavoriteStops = useCallback(
     (newFavoriteStops: FavoriteStop[]) => {
       setFavoriteStops(newFavoriteStops);
-      favoriteStopsService.save(favoriteStops);
+      favoriteStopsService.save(newFavoriteStops);
     },
-    [favoriteStops],
+    [],
   );
 
   useEffect(() => {
