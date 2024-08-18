@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { Stack, useLocalSearchParams } from 'expo-router';
+import { Link, Stack, useLocalSearchParams } from 'expo-router';
 import { useQuery } from '@tanstack/react-query';
 import { getStopTimes } from '@/lib/api';
 import {
