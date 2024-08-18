@@ -1,7 +1,7 @@
-import React, { useMemo } from "react";
-import { Stack, useLocalSearchParams } from "expo-router";
-import { useQuery } from "@tanstack/react-query";
-import { getStopTimes } from "@/lib/api";
+import React, { useMemo } from 'react';
+import { Stack, useLocalSearchParams } from 'expo-router';
+import { useQuery } from '@tanstack/react-query';
+import { getStopTimes } from '@/lib/api';
 import {
   ActivityIndicator,
   Text,
@@ -9,11 +9,11 @@ import {
   StyleSheet,
   View,
   Pressable,
-} from "react-native";
-import globalStyles from "@/styles/globalStyles";
-import { apiTimeToLocalTime, getDateTime } from "@/lib/utils.ts";
-import FontAwesome from "@expo/vector-icons/FontAwesome";
-import { useFavoriteStops } from "@/hooks/useFavoriteStops";
+} from 'react-native';
+import globalStyles from '@/styles/globalStyles';
+import { apiTimeToLocalTime, getDateTime } from '@/lib/utils.ts';
+import FontAwesome from '@expo/vector-icons/FontAwesome';
+import { useFavoriteStops } from '@/hooks/useFavoriteStops';
 
 const StopTimesPage = () => {
   const { stopId, routeId } = useLocalSearchParams<{
@@ -25,9 +25,10 @@ const StopTimesPage = () => {
   const isFavorite = useMemo(
     () =>
       favoriteStops.some(
-        (faveStop) => faveStop.routeId === routeId && faveStop.stopId === stopId
+        (faveStop) =>
+          faveStop.routeId === routeId && faveStop.stopId === stopId,
       ),
-    [favoriteStops, routeId, stopId]
+    [favoriteStops, routeId, stopId],
   );
 
   const { date, time } = useMemo(() => getDateTime(), []);
@@ -65,10 +66,10 @@ const StopTimesPage = () => {
     <ScrollView>
       <Stack.Screen
         options={{
-          title: "Departure Times",
+          title: 'Departure Times',
           headerRight: () => (
             <Pressable onPress={handleStarClick}>
-              <FontAwesome name={isFavorite ? "star" : "star-o"} size={16} />
+              <FontAwesome name={isFavorite ? 'star' : 'star-o'} size={16} />
             </Pressable>
           ),
         }}
@@ -86,7 +87,7 @@ const StopTimesPage = () => {
         <View style={globalStyles.card} key={index}>
           <Text style={globalStyles.cardText}>{stopTime.headsign}</Text>
           <Text>
-            time:{" "}
+            time:{' '}
             {apiTimeToLocalTime(stopTime.arrivalTime) ||
               apiTimeToLocalTime(stopTime.actualArrivalTime)}
           </Text>

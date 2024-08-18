@@ -1,9 +1,9 @@
-import { getRoutesForStop } from "@/lib/api";
-import globalStyles from "@/styles/globalStyles";
-import { useQuery } from "@tanstack/react-query";
-import { Link, Stack, useLocalSearchParams } from "expo-router";
-import React from "react";
-import { ActivityIndicator, ScrollView, Text } from "react-native";
+import { getRoutesForStop } from '@/lib/api';
+import globalStyles from '@/styles/globalStyles';
+import { useQuery } from '@tanstack/react-query';
+import { Link, Stack, useLocalSearchParams } from 'expo-router';
+import React from 'react';
+import { ActivityIndicator, ScrollView, Text } from 'react-native';
 
 export const RoutesPerStopPage = () => {
   const { stopId }: { stopId?: string } = useLocalSearchParams();
@@ -20,7 +20,7 @@ export const RoutesPerStopPage = () => {
 
   return (
     <ScrollView>
-      <Stack.Screen options={{ title: "Select Route" }} />
+      <Stack.Screen options={{ title: 'Select Route' }} />
       {routes.map((route, index) => (
         <Link
           key={index}

@@ -1,8 +1,8 @@
-import { useFavoriteStops } from "@/hooks/useFavoriteStops";
-import globalStyles from "@/styles/globalStyles";
-import { Link } from "expo-router";
-import React from "react";
-import { ScrollView, Text, View } from "react-native";
+import { useFavoriteStops } from '@/hooks/useFavoriteStops';
+import globalStyles from '@/styles/globalStyles';
+import { Link } from 'expo-router';
+import React from 'react';
+import { ScrollView, Text } from 'react-native';
 
 export default function SavedStops() {
   const { favoriteStops } = useFavoriteStops();

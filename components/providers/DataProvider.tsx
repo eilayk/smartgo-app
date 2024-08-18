@@ -1,7 +1,7 @@
-import { FavoriteStopsContext } from "@/lib/contexts";
-import { FavoriteStop } from "@/lib/models";
-import { favoriteStopsService } from "@/lib/service/favoriteStopsService";
-import { ReactNode, useCallback, useEffect, useState } from "react";
+import { FavoriteStopsContext } from '@/lib/contexts';
+import { FavoriteStop } from '@/lib/models';
+import { favoriteStopsService } from '@/lib/service/favoriteStopsService';
+import { ReactNode, useCallback, useEffect, useState } from 'react';
 
 type DataProviderProps = {
   children?: ReactNode;
@@ -16,7 +16,7 @@ export const DataProvider = (props: DataProviderProps) => {
       setFavoriteStops(newFavoriteStops);
       favoriteStopsService.save(favoriteStops);
     },
-    []
+    [favoriteStops],
   );
 
   useEffect(() => {
