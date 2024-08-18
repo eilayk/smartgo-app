@@ -1,4 +1,4 @@
-import { SavedStop, Stop, StopTimeResponse } from "./models";
+import { FavoriteStop, Stop, StopTimeResponse } from "./models";
 
 export const sampleStopTimes = {
     "stopName": "Union Station",
@@ -1084,4 +1084,4 @@ export const sampleSavedStops = [
         routeName: "Lakeshore East",
         routeId: "LE"
     }
-] as SavedStop[];
+] as FavoriteStop[];

@@ -1,5 +1,5 @@
-import React, { useMemo } from "react";
-import { useLocalSearchParams } from "expo-router";
+import React, { useMemo, useState } from "react";
+import { Stack, useLocalSearchParams } from "expo-router";
 import { useQuery } from "@tanstack/react-query";
 import { getStopTimes } from "@/lib/api";
 import {
@@ -8,9 +8,11 @@ import {
   ScrollView,
   StyleSheet,
   View,
+  Pressable,
 } from "react-native";
 import globalStyles from "@/styles/globalStyles";
 import { apiTimeToLocalTime, getDateTime } from "@/lib/utils.ts";
+import FontAwesome from "@expo/vector-icons/FontAwesome";
 
 const StopTimesPage = () => {
   const { stopId, routeId } = useLocalSearchParams<{
@@ -24,12 +26,28 @@ const StopTimesPage = () => {
     queryFn: () => getStopTimes(stopId, routeId, date, time),
   });
 
+  const [favourite, setFavourite] = useState(false);
+
   if (isPending) {
     return <ActivityIndicator />;
   }
 
+  if (error) {
+    console.log(error);
+  }
+
   return (
     <ScrollView>
+      <Stack.Screen
+        options={{
+          title: "Departure Times",
+          headerRight: () => (
+            <Pressable onPress={() => setFavourite(!favourite)}>
+              <FontAwesome name={favourite ? "star" : "star-o"} size={16} />
+            </Pressable>
+          ),
+        }}
+      />
       <Text style={[styles.bigText]}>{data?.routeName}</Text>
       <Text style={styles.mediumText}>{data?.stopName}</Text>
 
@@ -39,8 +57,8 @@ const StopTimesPage = () => {
         </View>
       )}
 
-      {data?.stopTimes.map((stopTime) => (
-        <View style={globalStyles.card}>
+      {data?.stopTimes.map((stopTime, index) => (
+        <View style={globalStyles.card} key={index}>
           <Text style={globalStyles.cardText}>{stopTime.headsign}</Text>
           <Text>
             time:{" "}

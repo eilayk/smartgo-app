@@ -24,7 +24,7 @@ export interface StopTime {
     trainLength: string | null;
 }
 
-export interface SavedStop {
+export interface FavoriteStop {
     stopId: string;
     stopName: string;
     routeId: string;
