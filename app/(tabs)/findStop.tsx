@@ -33,7 +33,7 @@ export default function FindStopPage() {
           stop.stopName.toLowerCase().includes(searchValue.toLowerCase()) && (
             <Link
               key={index}
-              href={`/(tabs)/stopTimes/stop/${stop.stopId}`}
+              href={`/(tabs)/search/stop/${stop.stopId}`}
               style={globalStyles.card}
             >
               <Text style={globalStyles.cardText}>{stop.stopName}</Text>

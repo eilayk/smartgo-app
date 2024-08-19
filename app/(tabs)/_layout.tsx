@@ -20,13 +20,24 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="stopTimes"
+        name="findStop"
         options={{
-          headerShown: false,
+          title: 'Select Stop',
           tabBarIcon: ({ color }) => (
             <FontAwesome size={28} name="search" color={color} />
           ),
         }}
+      />
+      <Tabs.Screen
+        name="stopTimes/route/[routeId]/stop/[stopId]"
+        options={{
+          title: 'Departure Times',
+          href: null,
+        }}
+      />
+      <Tabs.Screen
+        name="search/stop/[stopId]"
+        options={{ href: null, title: 'Select Route' }}
       />
     </Tabs>
   );
