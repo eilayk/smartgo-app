@@ -1,8 +1,8 @@
 import { getRoutesForStop } from '@/lib/api';
 import globalStyles from '@/styles/globalStyles';
 import { useQuery } from '@tanstack/react-query';
-import { Link, Stack, useLocalSearchParams } from 'expo-router';
-import React from 'react';
+import { Link, Stack, useLocalSearchParams, useRouter } from 'expo-router';
+import React, { useEffect } from 'react';
 import { ActivityIndicator, ScrollView, Text } from 'react-native';
 
 export const RoutesPerStopPage = () => {
@@ -12,7 +12,16 @@ export const RoutesPerStopPage = () => {
     queryFn: () => getRoutesForStop(stopId),
   });
 
+  const router = useRouter();
+
   const routes = data || [];
+
+  useEffect(() => {
+    if (routes.length === 1) {
+      router.back();
+      router.replace(`/stopTimes/route/${routes[0].routeId}/stop/${stopId}`);
+    }
+  }, [router, routes, stopId]);
 
   if (isPending) {
     return <ActivityIndicator />;
