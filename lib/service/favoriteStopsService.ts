@@ -5,7 +5,6 @@ const FAVORITE_STOPS_KEY = 'favorite-stops';
 
 const save = async (newFavoriteStops: FavoriteStop[]) => {
   try {
-    console.log('saving', newFavoriteStops);
     await AsyncStorage.setItem(
       FAVORITE_STOPS_KEY,
       JSON.stringify(newFavoriteStops),
@@ -21,7 +20,6 @@ const get = async (): Promise<FavoriteStop[]> => {
     if (value == null) {
       return [];
     }
-    console.log('getting', value);
     const favoriteStops: FavoriteStop[] = JSON.parse(value);
     return favoriteStops;
   } catch (error) {

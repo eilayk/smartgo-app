@@ -24,7 +24,7 @@ export const RoutesPerStopPage = () => {
       {routes.map((route, index) => (
         <Link
           key={index}
-          href={`/(tabs)/stopTimes/route/${route.routeId}/stop/${stopId}`}
+          href={`/stopTimes/route/${route.routeId}/stop/${stopId}`}
           style={globalStyles.card}
         >
           <Text style={globalStyles.cardText}>{route.routeName}</Text>

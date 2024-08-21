@@ -13,6 +13,7 @@ export default function SavedStops() {
           href={`/(tabs)/stopTimes/route/${faveStop.routeId}/stop/${faveStop.stopId}`}
           style={globalStyles.card}
           key={index}
+          replace
         >
           <Text style={[globalStyles.cardText]}>{faveStop.stopName} </Text>
           <Text>{faveStop.routeName} Line</Text>

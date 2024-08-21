@@ -1,6 +1,6 @@
 import { DataProvider } from '@/components/providers/DataProvider';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { Stack } from 'expo-router';
+import { Slot } from 'expo-router';
 
 const RootLayout = () => {
   const queryClient = new QueryClient();
@@ -8,9 +8,7 @@ const RootLayout = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <DataProvider>
-        <Stack>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        </Stack>
+        <Slot />
       </DataProvider>
     </QueryClientProvider>
   );

@@ -20,9 +20,9 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="findStop"
+        name="search"
         options={{
-          title: 'Find Stop',
+          headerShown: false,
           tabBarIcon: ({ color }) => (
             <FontAwesome size={28} name="search" color={color} />
           ),
@@ -32,6 +32,7 @@ export default function TabLayout() {
         name="stopTimes"
         options={{
           headerShown: false,
+          title: 'Departure Times',
           href: null,
         }}
       />
