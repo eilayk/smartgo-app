@@ -7,19 +7,21 @@ import { ActivityIndicator, ScrollView, Text } from 'react-native';
 
 export const RoutesPerStopPage = () => {
   const { stopId }: { stopId?: string } = useLocalSearchParams();
-  const { isPending, error, data } = useQuery({
+  const {
+    isPending,
+    error,
+    data: routes,
+  } = useQuery({
     queryKey: [`${stopId}/routes`],
     queryFn: () => getRoutesForStop(stopId),
   });
 
   const router = useRouter();
 
-  const routes = data || [];
-
   useEffect(() => {
-    if (routes.length === 1) {
+    if (routes?.length === 1) {
       router.back();
-      router.replace(`/stopTimes/route/${routes[0].routeId}/stop/${stopId}`);
+      router.push(`/stopTimes/route/${routes[0].routeId}/stop/${stopId}`);
     }
   }, [router, routes, stopId]);
 
@@ -30,7 +32,7 @@ export const RoutesPerStopPage = () => {
   return (
     <ScrollView>
       <Stack.Screen options={{ title: 'Select Route' }} />
-      {routes.map((route, index) => (
+      {routes?.map((route, index) => (
         <Link
           key={index}
           href={`/stopTimes/route/${route.routeId}/stop/${stopId}`}
