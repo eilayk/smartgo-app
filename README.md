@@ -1,7 +1,7 @@
 # smartGO
 Never miss your train again!
 
-This app shows updated train times for Metrolinx GO trains in Ontario, Canada.
+This is a React Native app that shows updated train times for Metrolinx GO trains in Ontario, Canada.
 
 <img width="534" alt="image" src="https://github.com/user-attachments/assets/3d1884aa-8852-4d89-9776-d96b7d87f9b7">
 
